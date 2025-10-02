@@ -6,7 +6,6 @@ import MyButton from './MyButton.jsx'
 createRoot(document.getElementById('root')).render(
   <div>
     <App />
-    <MyButton name="Walter" />
   </div>
 ) // JSX
 // App(); == <App />

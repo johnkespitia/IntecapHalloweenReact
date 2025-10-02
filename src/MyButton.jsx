@@ -1,6 +1,9 @@
+// Hooks (ganchos) - funciones especiales de React
+import React from 'react';
 function MyButton({ name }) {
+    // useSate 
     const handleClick= () => {
-        alert("¡Feliz Halloween " + name + " !");// ``
+        alert("¡Feliz Halloween " + name + " !");
     }
     return <button onClick={handleClick} className="custom">{name} Dulce o Truco?</button>
 }

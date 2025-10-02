@@ -1,12 +1,10 @@
 import './App.css'
-import MyButton from './MyButton.jsx'
-import MyInput from './MyInput.jsx'
+import Cronometro from './Cronometro'
 function App() {
   return <div>
-    <h1>Happy Halloween!</h1>
-    <MyInput />
+    <h1>Cronometro Happy Halloween!</h1>
     <hr/>
-    <MyButton name="Didier" />
+    <Cronometro />
   </div>
 }
 
