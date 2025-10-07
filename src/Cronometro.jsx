@@ -8,6 +8,7 @@ const Cronometro = ({ nombre = "Walter" }) => {
     const timerRef = useRef(null);
     const fechaRef = useRef(new Date());
     const buttonRef = useRef(null); // document.getElementById("miBoton")
+    const button2Ref = useRef(null); 
     
     // setTimeout(() => {
     //     setSegundos(segundos + 1);
@@ -72,7 +73,7 @@ const Cronometro = ({ nombre = "Walter" }) => {
     // useEffect(() => {},[])
     
     const handleLlegada = () => {
-        buttonRef.current.innerText = "Llego " + nombre;
+        button2Ref.current.innerText = "Llego " + nombre;
         setLlegada(segundos); // --> renderiza
     }
 
@@ -96,7 +97,7 @@ const Cronometro = ({ nombre = "Walter" }) => {
         </h2>
         <p>{segundos} segs.</p>
         <button onClick={handleActivo} ref={buttonRef}>{activo ? 'Pausar' : 'Reanudar'}</button> {/* id=miBoton */}
-        <button onClick={handleLlegada}>Registar llegada</button>
+        <button onClick={handleLlegada} ref={button2Ref}>Registar llegada</button>
         <Posiciones llegada={llegada} />
     </div>;
 }
