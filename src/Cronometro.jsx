@@ -1,11 +1,13 @@
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import Posiciones from "./Posiciones";
 
-const Cronometro = ({ nombre = "Nombre" }) => {
-    const [segundos, setSegundos] = useState(0);
-    const [activo, setActivo] = useState(true);
-    const [timer, setTimer] = useState(null);
-    const [llegada, setLlegada] = useState(0);
+const Cronometro = ({ nombre = "Walter" }) => {
+    const [segundos, setSegundos] = useState(0); // --> renderiza
+    const [activo, setActivo] = useState(true);// --> renderiza
+    const [llegada, setLlegada] = useState(0);// --> renderiza
+    const timerRef = useRef(null);
+    const fechaRef = useRef(new Date());
+    const buttonRef = useRef(null); // document.getElementById("miBoton")
     
     // setTimeout(() => {
     //     setSegundos(segundos + 1);
@@ -14,9 +16,12 @@ const Cronometro = ({ nombre = "Nombre" }) => {
     useEffect(() => {
         console.log('Cronometro mounted');
         const timer = setInterval(() => {
-            setSegundos((valor_previo) => { return valor_previo + 1 }); 
+            console.log('Intervalo corriendo');
+            setSegundos((valor_previo) => { return valor_previo + 1 }); // --> renderiza
         }, 1000);
-        setTimer(timer);
+        console.log('Ref Limpio: ',timerRef)
+        timerRef.current = timer;
+        console.log('Ref con data: ',timerRef)
     }, []);
 
     useEffect(() => {
@@ -25,7 +30,7 @@ const Cronometro = ({ nombre = "Nombre" }) => {
 
     useEffect(() => {
        
-    }, [timer]);
+    }, [timerRef]);
 
     useEffect(() => {
         //console.log("cambio")
@@ -42,14 +47,14 @@ const Cronometro = ({ nombre = "Nombre" }) => {
     useEffect(() => {
         return () => {
             console.log("EL COMPONENTE SE VA A DESMONTAR")
-            if(timer != null){
-                clearInterval(timer);
+            if(timerRef.current != null){
+                clearInterval(timerRef.current);
             }
         }
     }, []) //listener de didMount y willUnmount
 
     useEffect(() => {
-        console.log("cambio propiedad nombre")
+        console.log("cambio propiedad nombre ",nombre)
     }, [nombre])
     // sin segundo parametro didUpdate todo el estado
     // con [] solo didMount
@@ -67,27 +72,30 @@ const Cronometro = ({ nombre = "Nombre" }) => {
     // useEffect(() => {},[])
     
     const handleLlegada = () => {
-        setLlegada(segundos);
+        buttonRef.current.innerText = "Llego " + nombre;
+        setLlegada(segundos); // --> renderiza
     }
 
     const handleActivo = () => {
-        console.log('handleActivo', activo);
-        setActivo(!activo);
-        if(timer != null){
-            clearInterval(timer);
-            setTimer(null);
+        setActivo(!activo);// --> renderiza
+        fechaRef.current = new Date();
+        if(timerRef.current != null){
+            clearInterval(timerRef.current);
+            timerRef.current= null;
         }else{
             const newTimer = setInterval(() => {
                 setSegundos((valor_previo) => { return valor_previo + 1 });
             }, 1000);
-            setTimer(newTimer);
+           timerRef.current=newTimer;
         }
     }
-
+    
     return <div>
-        <h2>Cronometro Segundos</h2>
+        <h2>Cronometro Segundos 
+            <p>{fechaRef.current.getFullYear()}-{fechaRef.current.getMonth()}-{fechaRef.current.getDate()}:{fechaRef.current.getHours()}:{fechaRef.current.getMinutes()}:{fechaRef.current.getSeconds()}</p>
+        </h2>
         <p>{segundos} segs.</p>
-        <button onClick={handleActivo}>{activo ? 'Pausar' : 'Reanudar'}</button>
+        <button onClick={handleActivo} ref={buttonRef}>{activo ? 'Pausar' : 'Reanudar'}</button> {/* id=miBoton */}
         <button onClick={handleLlegada}>Registar llegada</button>
         <Posiciones llegada={llegada} />
     </div>;
