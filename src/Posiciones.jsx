@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
     useEffect(() => {
         if(llegada != null && llegada > 0){
+// malo malo malo no no no            llegada = 30
             setPosicionesArray([...posicionesArray, llegada])
             // let newArray = posicionesArray
             // newArray.push(llegada)

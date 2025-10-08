@@ -73,13 +73,16 @@ const Cronometro = ({ nombre = "Walter" }) => {
     // useEffect(() => {},[])
     
     const handleLlegada = () => {
-        button2Ref.current.innerText = "Llego " + nombre;
+        buttonRef.current.innerText = "Llego " + nombre;
+        console.log('Ref Boton: ',buttonRef)
         setLlegada(segundos); // --> renderiza
     }
 
     const handleActivo = () => {
         setActivo(!activo);// --> renderiza
         fechaRef.current = new Date();
+        buttonRef.current.style = activo?'background-color: green':'background-color: red';
+        // buttonRef.current.disabled = true;
         if(timerRef.current != null){
             clearInterval(timerRef.current);
             timerRef.current= null;
@@ -88,11 +91,12 @@ const Cronometro = ({ nombre = "Walter" }) => {
                 setSegundos((valor_previo) => { return valor_previo + 1 });
             }, 1000);
            timerRef.current=newTimer;
+           console.log('Ref con data 2: ',timerRef)
         }
     }
-    
+    const texto = "aqui va un cronometro " + (activo ? 'activo' : 'pausado');
     return <div>
-        <h2>Cronometro Segundos 
+        <h2>Cronometro Segundos {texto}
             <p>{fechaRef.current.getFullYear()}-{fechaRef.current.getMonth()}-{fechaRef.current.getDate()}:{fechaRef.current.getHours()}:{fechaRef.current.getMinutes()}:{fechaRef.current.getSeconds()}</p>
         </h2>
         <p>{segundos} segs.</p>
