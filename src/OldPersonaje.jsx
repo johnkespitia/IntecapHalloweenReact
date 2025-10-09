@@ -1,15 +1,15 @@
 import { useRef, useState } from "react";
-
-const Personaje = () => {
+const API = 'https://rickandmortyapi.com/api/character/'
+const Personaje = () => { //HOC
     const [personajeSeleccionado, setPersonajeSeleccionado] = useState(null);
-    const personajeRef = useRef(null);
+    const inputPersonajeRef = useRef(null);
     const assignPersonajeRef = (personaje) => {
-        personajeRef.current = personaje;
+        inputPersonajeRef.current = personaje;
     }
 
     const searchPersonaje = async (e) => {
         e.preventDefault();
-        console.log("Buscar personaje Ref: ", personajeRef.current);
+        console.log("Buscar personaje Ref: ", inputPersonajeRef.current);
         // Promesas
         // fetch(`https://rickandmortyapi.com/api/character/?name=${personajeRef.current}`)
         //     .then((res) => { return res.json() })
@@ -17,7 +17,7 @@ const Personaje = () => {
         //     .catch((err) => { console.log(err) });
         // Async Await
         try {
-            const response = await fetch(`https://rickandmortyapi.com/api/character/?name=${personajeRef.current}`)
+            const response = await fetch(`${API}?name=${inputPersonajeRef.current}`)
             const data = await response.json();
             console.log('data: ', data);
             setPersonajeSeleccionado(data.results[0]);

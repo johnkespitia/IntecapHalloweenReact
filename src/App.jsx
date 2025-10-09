@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-// import Cronometro from './Cronometro'
 import Personaje from './Personaje'
+// import Cronometro from './Cronometro'
+// import Personaje from './Personaje'
 function App() {
   // const [show, setShow] = useState(true)
   // const [nombre, setNombre] = useState("")
@@ -16,6 +17,7 @@ function App() {
     <button onClick={() => setShow(!show)} > 
       {show ? "Ocultar" : "Mostrar"}
     </button> */}
+    {/* <Personaje /> */}
     <Personaje />
   </div>
 }
