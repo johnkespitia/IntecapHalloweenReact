@@ -1,25 +1,15 @@
-import { useState } from 'react'
 import './App.css'
-import Personaje from './Personaje'
-// import Cronometro from './Cronometro'
-// import Personaje from './Personaje'
-function App() {
-  // const [show, setShow] = useState(true)
-  // const [nombre, setNombre] = useState("")
-  return <div>
-    {/* <h1>Cronometro Happy Halloween!</h1>
-    <hr/>
-    {show? <Cronometro nombre={nombre} /> : <h3>El cronometro esta oculto</h3>}
-    <input 
-      type="text" 
-      placeholder='Ingrese nombre'  
-      onChange={(e) => setNombre(e.target.value)} />
-    <button onClick={() => setShow(!show)} > 
-      {show ? "Ocultar" : "Mostrar"}
-    </button> */}
-    {/* <Personaje /> */}
-    <Personaje />
-  </div>
-}
+import BusquedaPersonaje from './componentes/BusquedaPersonaje.jsx'
+import Error from './componentes/Error.jsx'
+import Loading from './componentes/Loading.jsx'
+import PersonajeDetalle from './componentes/PersonajeDetalle.jsx'
+import PersonajeDeclarativo from './wrappers/PersonajeDeclarativo.jsx'
+const App = () => <PersonajeDeclarativo>
+    <h1>Buscador de Personajes de Rick and Morty</h1>
+    <BusquedaPersonaje />
+    <Error />
+    <Loading />
+    <PersonajeDetalle />
+</PersonajeDeclarativo>
 
 export default App
