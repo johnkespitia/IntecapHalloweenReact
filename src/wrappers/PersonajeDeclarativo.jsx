@@ -1,7 +1,6 @@
 // Wrapper Component
 import React, { Children, cloneElement, isValidElement, useRef, useState } from "react";
-// const API = 'https://dragonball-api.com/api/';
-const API = 'https://rickandmortyapi.com/api/'
+import { API } from "../constantes.js";
 const PersonajeDeclarativo = ({ children }) => {
     const [personajeSeleccionado, setPersonajeSeleccionado] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -28,7 +27,7 @@ const PersonajeDeclarativo = ({ children }) => {
         }
     }
     
-    
+    //Inyeccion de propiedades a los componentes hijos
     return Children.map(children, child => {
         if (!isValidElement(child)) return child;
         return cloneElement(child, {
