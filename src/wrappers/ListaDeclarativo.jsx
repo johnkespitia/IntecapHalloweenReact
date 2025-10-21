@@ -1,4 +1,4 @@
-import { Children, cloneElement, isValidElement, useCallback, useEffect, useRef, useState } from "react";
+import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { API } from "../constantes";
 
 const ListaDeclarativo = ({children}) => {
@@ -7,6 +7,7 @@ const ListaDeclarativo = ({children}) => {
     const [error, setError] = useState(null);
     const [pagina, setPagina] = useState(1);
     const lastPageRef = useRef(null);
+    const seleccionadoRef = useRef(null);
 
     const getPersonajes = useCallback(async () => {
         setError(null);
@@ -23,6 +24,23 @@ const ListaDeclarativo = ({children}) => {
             setLoading(false);
         }
     },[pagina]);
+
+    const handleSeleccionaPersonaje = useCallback((id) => {
+        console.log('seleccionando personaje con id:', id);
+        seleccionadoRef.current = id;
+        setPersonajes((prevPersonajes) =>
+            prevPersonajes.map((personaje) =>
+                personaje.id === id
+                    ? { ...personaje, seleccionado: !personaje.seleccionado }
+                    : personaje
+            )
+        );
+    }, []);
+
+    const personajeSeleccionado = useMemo(() => {
+        console.log("Calculando PersonajeSeleccionado");
+        return personajes.find(personaje => personaje.seleccionado);
+    }, [seleccionadoRef.current]);
 
     useEffect(() => {
         getPersonajes();
@@ -56,6 +74,8 @@ const ListaDeclarativo = ({children}) => {
             personajes,
             loading,
             error,
+            handleSeleccionaPersonaje,
+            personajeSeleccionado
         })
     })
 }

@@ -7,12 +7,13 @@ import PersonajeDetalle from './componentes/PersonajeDetalle.jsx'
 import ListaDeclarativo from './wrappers/ListaDeclarativo.jsx'
 import PersonajeDeclarativo from './wrappers/PersonajeDeclarativo.jsx'
 import ListaPersonajes from './componentes/ListaPersonajes.jsx'
-import EjemploUseCallback from './componentes/EjemploUseCallback.jsx'
+import ThemeProvider from './store/ThemeContext.jsx'
+import ToggleTheme from './componentes/ToggleTheme.jsx'
 
 function App() {
-    return <React.Fragment>
-        <PersonajeDeclarativo>
-            
+    return <ThemeProvider>
+        <ToggleTheme />
+        <PersonajeDeclarativo> 
             <BusquedaPersonaje />
             <Error />
             <Loading />
@@ -24,7 +25,7 @@ function App() {
             <Loading />
         </ListaDeclarativo>
         {/* <EjemploUseCallback /> */}
-    </React.Fragment>
+    </ThemeProvider>
 }
 
 export default App
