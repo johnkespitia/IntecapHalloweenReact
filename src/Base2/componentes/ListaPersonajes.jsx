@@ -1,7 +1,11 @@
 import React from "react"
 import PersonajeDetalle from "./PersonajeDetalle"
 
-const ListaPersonajes = ({personajes, handleSeleccionaPersonaje, personajeSeleccionado}) => {
+const ListaPersonajes = ({
+    personajes, 
+    handleSeleccionaPersonaje, 
+    personajeSeleccionado
+}) => {
     const ComponenteMemorizado = React.memo(()=>
          <PersonajeDetalle personajeSeleccionado={personajeSeleccionado} />
     , [personajeSeleccionado])
@@ -13,7 +17,10 @@ const ListaPersonajes = ({personajes, handleSeleccionaPersonaje, personajeSelecc
     <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', 
     paddingLeft: '1rem'}}>
         {personajes.map((personaje, idx) => {
-            return <PersonajeDetalle personajeSeleccionado={personaje} handleSeleccionaPersonaje={handleSeleccionaPersonaje} key={idx} />
+            return <PersonajeDetalle 
+                personajeSeleccionado={personaje} 
+                handleSeleccionaPersonaje={handleSeleccionaPersonaje} key={idx} 
+            />
         })}
     </div>
     </>
