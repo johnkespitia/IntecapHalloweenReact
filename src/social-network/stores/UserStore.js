@@ -1,7 +1,12 @@
 import { create } from 'zustand';
-
-export const useUserStore = create((set) => ({
+import { persist } from 'zustand/middleware';
+export const useUserStore = create(
+    persist( (set) => ({
     user: null,
     setUser: (userData) => set({ user: userData }),
     clearUser: () => set({ user: null }),
-}));
+}), {
+    name: 'pqrs-storage',
+    getStorage: () => localStorage,
+} )
+);
