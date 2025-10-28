@@ -30,7 +30,7 @@ const RegistroPQRS = () => {
         >
          {({values, isSubmitting,errors, touched})=>{
                 return <Form>
-                    <Field name="fullname" placeholder="Nombre Completo" />
+                    <Field name="fullname" placeholder="Nombre Completo" className="custom" />
                     {errors.fullname && touched.fullname && <div>{errors.fullname}</div>}
                     <br/>
                     <Field name="email" placeholder="Correo Electrónico" type="email" />

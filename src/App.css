@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+.custom {
+  background-color: rgb(255, 102, 0);
+  color: black;
+  font-weight: bold;
+  border: 2px solid black;
+}

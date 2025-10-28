@@ -1,5 +1,9 @@
 import styles from "../styles/login.module.css"
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 import { useUserStore } from "../stores"
+import { TextField } from "@mui/material";
 const Login = () => {
     const { setUser } = useUserStore();
     // const userManagement = useUserStore();
@@ -13,16 +17,20 @@ const Login = () => {
         setUser(data);
         // userManagement.setUser(data);
     };
-    return <div className={styles.centerLogin}>
-        <form onSubmit={handleFormSubmit}>
-            <h1>Login</h1>
-            <input type="text" name="username" placeholder="Username" />
+    return <Card className={styles.cardLogin}>
+        <CardContent>
+            <form onSubmit={handleFormSubmit}>
+            <h1 className="text-danger">Login</h1>
+            <TextField type="text" name="username" placeholder="Username" variant="filled">
+
+            </TextField>
             <br />
             <input type="password" name="password" placeholder="Password" />
             <br />
-            <button type="submit">Iniciar Sesión</button>
+            <Button type="submit">Iniciar Sesión</Button>
         </form>
-    </div>
+        </CardContent>
+    </Card>
 }
 
 export default Login
