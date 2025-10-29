@@ -11,6 +11,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/setupTests.js',
+    include: ['src/**/*.spec.{js,ts,jsx,tsx}'],
+    transformMode: {
+      // This forces files matching these regexes to be processed 
+      // by the web transformation pipeline, which handles JSX.
+      web: [/\.[jt]sx$/], 
+    },
     coverage: {
       reporter: ['text', 'json', 'html'],
     },

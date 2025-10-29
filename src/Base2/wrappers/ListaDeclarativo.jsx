@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { API } from "../constantes";
+import { API } from "../../constantes";
 
 const ListaDeclarativo = ({children}) => {
     const [personajes, setPersonajes] = useState([]);
