@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
+    "run:prod": "vite --mode production",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -13,7 +14,8 @@
     "test:coverage": "vitest run --coverage",
     "e2e:open": "cypress open",
     "e2e:run": "cypress run",
-    "e2e:test": "start-server-and-test dev http://localhost:5173 e2e:run"
+    "e2e:test": "start-server-and-test dev http://localhost:5173 e2e:run",
+    "e2e:prod": "start-server-and-test run:prod http://localhost:5173/IntecapHalloweenReact/ e2e:run"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
