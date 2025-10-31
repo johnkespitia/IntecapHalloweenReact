@@ -7,8 +7,9 @@ import { useUserStore } from './social-network/stores';
 import Solicitud from './social-network/pages/Solicitud.jsx'
 import RegistroPQRS from './social-network/pages/RegistroPQRS.jsx'
 const App = () => {
+    const basename = import.meta.env.BASE_URL || '/';
     const { user } = useUserStore();
-    return <BrowserRouter>
+    return <BrowserRouter basename={basename}>
         <Routes>
             {user == null && <Route path='/' element={<Login />} />}
             {user == null && <Route path='/pqrs' element={<RegistroPQRS />} />}
